@@ -102,7 +102,7 @@ def extract_ja_docs(docpath: str, targetdir: str):
         text = text.decode("utf8")
         lang = detect_language(text)
         if lang == Language.ja:
-            targetdir_p.mkdir(exist_ok=True)
+            targetdir_p.mkdir(parents=True, exist_ok=True)
             new_path = targetdir_p / f'{Path(docpath).stem}.txt'
             with open(new_path, "wt") as ofp:
                 ofp.write(text)
