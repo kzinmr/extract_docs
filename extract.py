@@ -126,7 +126,8 @@ if __name__=='__main__':
     doc_dir = args[1]
     target_dir = args[2]
     for cur, dirs, files in os.walk(doc_dir):
+        target_subdir = cur.replace(doc_dir, target_dir)
         for fn in files:
             if fn.endswith('doc') or fn.endswith('docx'):
                 doc_path = os.path.join(cur, fn)
-                extract_ja_docs(doc_path, target_dir)
+                extract_ja_docs(doc_path, target_subdir)
