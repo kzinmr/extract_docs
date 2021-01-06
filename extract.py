@@ -127,7 +127,10 @@ if __name__=='__main__':
     target_dir = args[2]
     for cur, dirs, files in os.walk(doc_dir):
         target_subdir = cur.replace(doc_dir, target_dir)
-        for fn in files:
-            if fn.endswith('doc') or fn.endswith('docx'):
-                doc_path = os.path.join(cur, fn)
-                extract_ja_docs(doc_path, target_subdir)
+        if not os.path.exists(target_subdir):
+            for fn in files:
+                if fn.endswith('doc') or fn.endswith('docx'):
+                    doc_path = os.path.join(cur, fn)
+                    extract_ja_docs(doc_path, target_subdir)
+        else:
+            print(f'skip: {target_subdir} already exists')
