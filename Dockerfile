@@ -22,7 +22,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip install textract langdetect
+RUN pip install --upgrade pip && pip install textract langdetect
 COPY extract.py /app
 # /app/workspace is mounted to ./workspace
 
