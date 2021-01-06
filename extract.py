@@ -128,4 +128,5 @@ if __name__=='__main__':
     for cur, dirs, files in os.walk(doc_dir):
         for fn in files:
             if fn.endswith('doc') or fn.endswith('docx'):
-                extract_ja_docs(fn, target_dir)
+                doc_path = os.path.join(cur, fn)
+                extract_ja_docs(doc_path, target_dir)
