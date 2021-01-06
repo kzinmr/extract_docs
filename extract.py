@@ -116,7 +116,7 @@ def extract_ja_docs(docpath: str, targetdir: str):
             # doc_p.unlink()
             pass
 
-    except (textract.exceptions.ShellError, UnicodeDecodeError) as e:
+    except (textract.exceptions.ShellError, UnicodeDecodeError, zipfile.BadZipFile) as e:
         print(f"{e} skip: {docpath}")
 
 
