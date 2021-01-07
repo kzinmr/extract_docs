@@ -92,7 +92,7 @@ def detect_language(text) -> Language:
 
 
 def extract_ja_docs(docpath: str, targetdir: str):
-    """ extract text from doc/docx
+    """extract text from doc/docx
     - dirpath: directory which includes doc/docx files
     """
     # dirpath_p = Path(dirpath)
@@ -103,7 +103,7 @@ def extract_ja_docs(docpath: str, targetdir: str):
         lang = detect_language(text)
         if lang == Language.ja:
             targetdir_p.mkdir(parents=True, exist_ok=True)
-            new_path = targetdir_p / f'{Path(docpath).stem}.txt'
+            new_path = targetdir_p / f"{Path(docpath).stem}.txt"
             with open(new_path, "wt") as ofp:
                 ofp.write(text)
         else:
@@ -116,11 +116,17 @@ def extract_ja_docs(docpath: str, targetdir: str):
             # doc_p.unlink()
             pass
 
-    except (textract.exceptions.ShellError, UnicodeDecodeError, zipfile.BadZipFile, TypeError) as e:
+    except (
+        textract.exceptions.ShellError,
+        UnicodeDecodeError,
+        zipfile.BadZipFile,
+        TypeError,
+        KeyError,
+    ) as e:
         print(f"{e} skip: {docpath}")
 
 
-if __name__=='__main__':
+if __name__ == "__main__":
     args = sys.argv
     assert len(args) == 3
     doc_dir = args[1]
@@ -129,8 +135,8 @@ if __name__=='__main__':
         target_subdir = cur.replace(doc_dir, target_dir)
         if not os.path.exists(target_subdir):
             for fn in files:
-                if fn.endswith('doc') or fn.endswith('docx'):
+                if fn.endswith("doc") or fn.endswith("docx"):
                     doc_path = os.path.join(cur, fn)
                     extract_ja_docs(doc_path, target_subdir)
         else:
-            print(f'skip: {target_subdir} already exists')
+            print(f"skip: {target_subdir} already exists")
