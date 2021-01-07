@@ -118,6 +118,7 @@ def extract_ja_docs(docpath: str, targetdir: str):
 
     except (
         textract.exceptions.ShellError,
+        textract.exceptions.ExtensionNotSupported,
         UnicodeDecodeError,
         zipfile.BadZipFile,
         TypeError,
