@@ -121,6 +121,7 @@ def extract_ja_docs(docpath: str, targetdir: str):
         textract.exceptions.ExtensionNotSupported,
         UnicodeDecodeError,
         zipfile.BadZipFile,
+        OSError,
         TypeError,
         KeyError,
     ) as e:
