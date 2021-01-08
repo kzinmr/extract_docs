@@ -116,15 +116,16 @@ def extract_ja_docs(docpath: str, targetdir: str):
             # doc_p.unlink()
             pass
 
-    except (
-        textract.exceptions.ShellError,
-        textract.exceptions.ExtensionNotSupported,
-        UnicodeDecodeError,
-        zipfile.BadZipFile,
-        OSError,
-        TypeError,
-        KeyError,
-    ) as e:
+    except Exception as e:
+    # (
+    #     textract.exceptions.ShellError,
+    #     textract.exceptions.ExtensionNotSupported,
+    #     UnicodeDecodeError,
+    #     zipfile.BadZipFile,
+    #     OSError,
+    #     TypeError,
+    #     KeyError,
+    # ) as e:
         print(f"{e} skip: {docpath}")
 
 
